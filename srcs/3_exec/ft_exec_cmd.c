@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/30 11:09:27 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/30 23:18:26 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 		return (SUCCESS);
 	if (cmd_path[0] == 0)
 		return (SUCCESS);
-	if ((cmd_path[0] == '.' && cmd_path[1] == '/' ) || cmd_path[0] == '/')
+	if ((cmd_path[0] == '.' && cmd_path[1] == '/') || cmd_path[0] == '/')
 	{
 		ft_cmd_is_directory(cmd_path);
 		ft_cmd_path_error_handle(exec_info, cmd_path);
 		if (access(cmd_path, X_OK) == SUCCESS)
 			return (SUCCESS);
 	}
-	if (exec->path_ev[0] == NULL && !ft_is_builtin(exec_info))
+	if ((exec->path_ev[0] == NULL && !ft_is_builtin(exec_info)))
 	{
 		ft_printf_err("minishell: %s: No such file or directory\n",
 			exec_info->cmd[0]);

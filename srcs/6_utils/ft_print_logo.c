@@ -6,13 +6,13 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 16:20:57 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/30 16:22:17 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/30 17:12:47 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void ft_print_log_sub(void)
+static void	ft_print_log_sub(void)
 {
 	printf("\033[37m║     \033[34m██\033[37m║     \033[37m:\n");
 	printf("\033[37m:\033[35m██\033[37m║╚\033[35m██\033[37m╔╝\033[35m██\033[37m║");
