@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/30 11:35:28 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/30 16:20:42 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,6 @@ static void	ft_parse_execute(t_info *info, t_parse *parse, t_exec *exec)
 	ft_free_all(parse, exec);
 }
 
-void	ft_print_logo(void)
-{
-	printf("\033[32m······································");
-	printf("·······························\n");
-	printf(":███╗   ███╗██╗███╗   ██╗██╗███████╗██");
-	printf("╗  ██╗███████╗██╗     ██╗     :\n");
-	printf(":████╗ ████║██║████╗  ██║██║██╔════╝██");
-	printf("║  ██║██╔════╝██║     ██║     :\n");
-	printf(":██╔████╔██║██║██╔██╗ ██║██║███████╗██");
-	printf("█████║█████╗  ██║     ██║     :\n");
-	printf(":██║╚██╔╝██║██║██║╚██╗██║██║╚════██║██");
-	printf("╔══██║██╔══╝  ██║     ██║     :\n");
-	printf(":██║ ╚═╝ ██║██║██║ ╚████║██║███████║██");
-	printf("║  ██║███████╗███████╗███████╗:\n");
-	printf(":╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═");
-	printf("╝  ╚═╝╚══════╝╚══════╝╚══════╝:\n");
-	printf(":                                ");
-	printf("     made by sangshin and janhan   :\n");
-	printf("······································");
-	printf("·······························\n");
-}
-
 int	main(int ac, char **av, char **ev)
 {
 	t_info		info;
@@ -55,7 +33,7 @@ int	main(int ac, char **av, char **ev)
 	while (TRUE)
 	{
 		ft_sig_init(&info);
-		parse.line = readline("minishell$ ");
+		parse.line = readline("\033[32mminishell$ ");
 		if (parse.line == NULL)
 		{
 			ft_list_clear(&info.mini_ev);

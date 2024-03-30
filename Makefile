@@ -6,7 +6,7 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 13:41:14 by janhan            #+#    #+#              #
-#    Updated: 2024/03/30 11:06:06 by janhan           ###   ########.fr        #
+#    Updated: 2024/03/30 16:21:57 by janhan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,8 +78,9 @@ SRCS					=	srcs/main.c										\
 							srcs/6_utils/ft_is_redirect.c					\
 							srcs/6_utils/ft_is_space.c						\
 							srcs/6_utils/ft_perror.c						\
+							srcs/6_utils/ft_print_logo.c					\
 							srcs/gnl/get_next_line_utils.c					\
-							srcs/gnl/get_next_line.c						\
+							srcs/gnl/get_next_line.c
 
 OBJS_MAND		=	$(SRCS:.c=.o)
 
