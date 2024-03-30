@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:45:56 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/29 02:35:02 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/29 23:04:27 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,19 @@ static int	ft_export_builtin_arg_check(char *str)
 
 	i = 0;
 	if (ft_isalpha(str[0]) == FALSE && str[0] != '_')
+	{
+		g_child_exit_code = 1;
 		return (FAILURE);
+	}
 	while (str[i])
 	{
 		if (str[i] == '=')
 			return (SUCCESS);
 		if (ft_isalnum(str[i]) == FALSE && str[i] != '_')
+		{
+			g_child_exit_code = 1;
 			return (FAILURE);
+		}
 		i++;
 	}
 	return (SUCCESS);
@@ -63,14 +69,13 @@ static void	ft_export_builtin_arg(t_info *info, t_exec_info *exec_info)
 	size_t	i;
 	t_node	*to_find;
 
-	i = 0;
-	while (exec_info->cmd[++i])
+	i = 1;
+	while (exec_info->cmd[i])
 	{
 		if (ft_export_builtin_arg_check(exec_info->cmd[i]) == FAILURE)
 		{
-			ft_printf_err("export: %s: not a valid identifier\n",
-				exec_info->cmd[i + 1]);
-			g_child_exit_code = 1;
+			ft_printf_err("export: `%s': not a valid identifier\n",
+				exec_info->cmd[i++]);
 			continue ;
 		}
 		to_find = ft_find_node(exec_info->cmd[i], &info->mini_ev);
@@ -84,6 +89,7 @@ static void	ft_export_builtin_arg(t_info *info, t_exec_info *exec_info)
 		}
 		else
 			ft_list_push_back(ft_strdup(exec_info->cmd[i]), &(info->mini_ev));
+		i++;
 	}
 }
 

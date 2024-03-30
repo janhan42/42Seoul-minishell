@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 09:03:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 19:26:02 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/30 15:49:16 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	ft_exit_builtin_arg_check(t_exec *exec, size_t i, int sing_flag)
 			i++;
 		else
 		{
+			ft_printf_err("exit\n");
 			ft_printf_err("minishell: exit: %s: numeric argument required\n",
 				exec->exec_arr[exec->exec_arr_index].cmd[1]);
 			exit(255);
@@ -37,7 +38,7 @@ static void	ft_exit_builtin_arg_check(t_exec *exec, size_t i, int sing_flag)
 	}
 	if (i == 1 && sing_flag == TRUE)
 	{
-		ft_printf_err("exit");
+		ft_printf_err("exit\n");
 		ft_printf_err("minishell: exit: %s: numeric argument required\n",
 			exec->exec_arr[exec->exec_arr_index].cmd[1]);
 		exit(255);
@@ -66,8 +67,8 @@ static void	ft_exit_builtin_no_arg(t_list *mini_ev, t_parse *parse,
 {
 	if ((exec->exec_arr[exec->exec_arr_index].cmd[1]) == NULL)
 	{
-		if (exec_info->builtin_parent == FALSE)
-			printf("exit\n");
+		if (exec_info->builtin_parent == TRUE)
+			ft_printf_err("exit\n");
 		ft_list_clear(mini_ev);
 		ft_free_all(parse, exec);
 		exit(EXIT_SUCCESS);
@@ -95,10 +96,3 @@ int	ft_exit_builtin(t_list *mini_ev, t_parse *parse, t_exec *exec,
 	ft_free_all(parse, exec);
 	exit(exit_value);
 }
-
-/*
-	exit ‘  3 ‘ 식으로 공백 들어가는건 에러 안나와야 하는거
-	bash 테스트상 exit ' 34'가능
-				exit '3 4' 불가능
-				exit ' 3a' 불가능 이니까 좌우 trim 함수만들어서 사용 하면 될듯
-*/

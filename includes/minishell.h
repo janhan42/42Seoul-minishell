@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/29 02:30:38 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/30 11:22:57 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ void	ft_signal_2(int sig);
 void	ft_sig_for_here_doc_parent(int sig);
 void	ft_sig_for_here_doc_child(int sig);
 void	ft_sig_for_parent(int sig);
+void	ft_print_logo(void);
 
 /* 1_PARSING */
 int		ft_parse(t_info *info, t_parse *parse);

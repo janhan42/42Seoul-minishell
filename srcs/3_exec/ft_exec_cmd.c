@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/29 02:31:17 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/30 11:09:27 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,17 +114,17 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
+	ft_set_fd(exec, exec_info);
 	if (ft_find_cmd(exec, exec_info, parse) == FAILURE
 		&& ft_is_builtin(exec_info) == FALSE)
 	{
-		ft_printf_err("%s: command not found\n", exec_info->cmd[0]);
+		ft_printf_err("minishell: %s: command not found\n", exec_info->cmd[0]);
 		ft_free_all(parse, exec);
 		exit(127);
 	}
 	else
 	{
 		ft_cmd_null_handle(exec_info);
-		ft_set_fd(exec, exec_info);
 		if (exec_info->cmd_path == NULL)
 			exit(EXIT_SUCCESS);
 		if (ft_is_builtin(exec_info) == TRUE)

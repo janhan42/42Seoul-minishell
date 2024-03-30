@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:39:11 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 15:26:46 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/03/30 11:25:31 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void	ft_init(int ac, char **av, char **ev, t_info *info)
 	info->ev = ev;
 	tcgetattr(STDIN_FILENO, &info->termios_backup);
 	ft_mini_ev_init(ev, info);
+	ft_print_logo();
 }

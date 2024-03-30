@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:21:34 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 19:36:27 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/30 11:09:13 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_redirect_out1(t_exec_info *exec_info, t_redirect *redirect)
 		(redirect->value, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (redirect->value[0] == '\0')
 	{
-		ft_printf_err("%s: ambiguous redirect\n", redirect->original);
+		ft_printf_err("minishell: %s: ambiguous redirect\n", redirect->original);
 		exit(1);
 	}
 	if (exec_info->outfile_fd == FAILURE)
@@ -54,7 +54,8 @@ static void	ft_redirect_in1(t_exec_info *exec_info, t_redirect *redirect)
 	exec_info->infile_fd = open(redirect->value, O_RDONLY);
 	if (exec_info->infile_fd == FAILURE)
 	{
-		ft_printf_err("%s: No such file or directory\n", redirect->value);
+		ft_printf_err("minishell: %s: No such file or directory\n",
+			redirect->value);
 		exit(1);
 	}
 }
