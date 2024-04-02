@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 11:00:03 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 22:15:15 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/30 23:33:52 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	ft_unset_builtin_del_node(t_info *info, t_exec_info *exec_info)
 	{
 		if (ft_unset_builtin_arg_check(exec_info->cmd[i]) == FAILURE)
 		{
-			ft_printf_err("unset: '%s': not a vaild identifier\n",
+			ft_printf_err("unset: `%s': not a vaild identifier\n",
 				exec_info->cmd[i++]);
 			continue ;
 		}

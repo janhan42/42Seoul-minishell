@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/30 23:18:26 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/02 13:24:07 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 	char	*cmd_path;
 
 	cmd_path = exec_info->cmd_path;
+	if (parse->dquote_flag == TRUE && cmd_path[0] == 0) // "$ASD" 처리추가했는데 음 테스트 한번 더 돌려봐야 할듯
+		return (FAILURE);
 	if (cmd_path == NULL)
 		return (SUCCESS);
-	if (cmd_path[0] == 0)
-		return (SUCCESS);
+	// if (cmd_path[0] == 0)
+	// 	return (SUCCESS);
 	if ((cmd_path[0] == '.' && cmd_path[1] == '/') || cmd_path[0] == '/')
 	{
 		ft_cmd_is_directory(cmd_path);

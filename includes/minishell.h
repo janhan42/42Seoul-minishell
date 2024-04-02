@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/30 11:22:57 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/02 13:36:21 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ extern int	g_child_exit_code;
 typedef struct s_node
 {
 	void			*content;
+	int				visit;
 	struct s_node	*next_node;
 }	t_node;
 
@@ -153,6 +154,7 @@ void	ft_mini_ev_init(char **ev, t_info *info);
 int		ft_init_exec(t_info *info, t_parse *parse, t_exec *exec);
 void	ft_sig_init(t_info *info);
 void	ft_signal_2(int sig);
+void	ft_sigpipe_handler(int signum);
 void	ft_sig_for_here_doc_parent(int sig);
 void	ft_sig_for_here_doc_child(int sig);
 void	ft_sig_for_parent(int sig);

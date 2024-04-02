@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:49:35 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 22:14:36 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/30 23:40:18 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	ft_list_push_back(void *content, t_list *list)
 	if (new_node == NULL)
 		return (ft_error("new_node malloc return NULL", FAILURE));
 	new_node->content = content;
+	new_node->visit = FALSE;
 	new_node->next_node = NULL;
 	finder = list->front_node;
 	while (finder && finder->next_node)

@@ -6,17 +6,12 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 01:13:07 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/30 11:24:51 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/02 13:43:35 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/**
- * @brief
- * signal 'SIGINT'핸들러 부분
- * @param sig
- */
 void	ft_signal_2(int sig)
 {
 	(void)sig;
