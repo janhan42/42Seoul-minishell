@@ -6,21 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 18:22:50 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/30 11:14:47 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/03 15:42:59 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/get_next_line.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	return (len);
-}
 
 char	*ft_strjoin_gnl(char *contents, char *buffer)
 {

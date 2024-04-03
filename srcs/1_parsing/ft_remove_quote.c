@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 00:32:36 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 15:20:42 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/03 15:44:42 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	ft_find_quote(t_parse *parse)
 		quote = c;
 		parse->start_index = parse->str_index;
 		parse->str_index++;
-		while (parse->token->str[parse->str_index] != quote)
+		while (parse->token->str[parse->str_index]
+			&& parse->token->str[parse->str_index] != quote)
 			parse->str_index++;
 		ft_strlcpy(&parse->token->str[parse->start_index],
 			&parse->token->str[parse->start_index] + 1,

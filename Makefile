@@ -6,19 +6,19 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 13:41:14 by janhan            #+#    #+#              #
-#    Updated: 2024/04/02 13:44:09 by janhan           ###   ########.fr        #
+#    Updated: 2024/04/03 15:42:39 by janhan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME					=	minishell
 
 CC						=	cc
-CFLAGS					=	-Wall -Wextra -Werror #-fsanitize=address
+CFLAGS					=	-Wall -Wextra -Werror -fsanitize=address
 RM						=	rm -f
 
-#R1EADLINE_LINK			=	-l readline
+READLINE_LINK			=	-l readline
 #	FOR M1 MAC
-READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
+#READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
 
 INCLUDES				=	includes/
 
