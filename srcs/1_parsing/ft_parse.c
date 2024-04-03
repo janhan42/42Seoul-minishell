@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:03:14 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/30 23:12:39 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/03 15:53:18 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	ft_parse(t_info *info, t_parse *parse)
 		ft_free_tokens(parse, parse->token_count);
 		return (FAILURE);
 	}
-	ft_remove_quote(parse);
+	if (parse->token->env_flag == FALSE)
+		ft_remove_quote(parse);
 	if (ft_syntax_check(parse) == FAILURE)
 	{
 		parse->token_index = parse->token_count;

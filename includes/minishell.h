@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/02 13:36:21 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/03 15:51:49 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_token
 	t_token_type	type;
 	char			*original;
 	char			*str;
+	int				env_flag;
 }	t_token;
 
 /* INFO STRUCT */

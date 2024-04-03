@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:59:19 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/30 23:18:10 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/03 15:52:48 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,12 @@ static int	ft_find_env(t_info *info, t_parse *parse)
 {
 	ft_set_quote_flag(parse);
 	if (parse->squote_flag == FALSE && parse->token->str[parse->str_index]
-		== '$'
-		&& (ft_isalpha(parse->token->str[parse->str_index + 1])
+		== '$' && (ft_isalpha(parse->token->str[parse->str_index + 1])
 			|| parse->token->str[parse->str_index + 1] == '_'
 			|| parse->token->str[parse->str_index + 1] == '-'
 			|| parse->token->str[parse->str_index + 1] == '?'))
 	{
+		parse->token->env_flag = TRUE;
 		if (ft_is_child_exit_code(parse) == TRUE)
 			return (ft_convert_child_exit_code(parse));
 		else if (ft_check_env(info, parse) == TRUE)

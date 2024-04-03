@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:32:02 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/29 02:14:54 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/03 15:52:35 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_make_token(t_parse *parse, t_token_type type)
 	parse->tokens[parse->token_index].str = parse->temp_str;
 	parse->tokens[parse->token_index].original
 		= ft_strdup(parse->tokens[parse->token_index].str);
+	parse->tokens[parse->token_index].env_flag = FALSE;
 	parse->token_index++;
 	return (SUCCESS);
 }
