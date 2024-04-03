@@ -6,14 +6,14 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 13:41:14 by janhan            #+#    #+#              #
-#    Updated: 2024/04/03 15:42:39 by janhan           ###   ########.fr        #
+#    Updated: 2024/04/03 16:02:16 by janhan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME					=	minishell
 
 CC						=	cc
-CFLAGS					=	-Wall -Wextra -Werror -fsanitize=address
+CFLAGS					=	-Wall -Wextra -Werror# -fsanitize=address
 RM						=	rm -f
 
 READLINE_LINK			=	-l readline
