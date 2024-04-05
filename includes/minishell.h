@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/03 15:51:49 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/05 08:50:50 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 
+# define NOT_HOME 1
 # define TRUE 1
 # define FALSE 0
 # define SUCCESS 0
@@ -192,20 +193,20 @@ void	ft_set_pipe_fd(t_exec *exec, t_exec_info *exec_info);
 void	ft_set_redirect_fd(t_exec_info *exec_info);
 
 /* 4_builtin */
-int		ft_cd_builtin(t_info *info, t_exec_info *exec_info);
+int		ft_cd_builtin(t_info *info, t_exec_info *exec_info, t_parse *parse);
 int		ft_echo_builtin(t_exec_info *exec_info);
 int		ft_env_builtin(t_info *info);
+int		ft_unset_builtin(t_info *info, t_exec_info *exec_info);
+int		ft_exit_builtin(t_list *mini_ev, t_parse *parse,
+			t_exec *exec, t_exec_info *exec_info);
+int		ft_export_builtin(t_info *info, t_exec_info *exec_info);
+int		ft_pwd_builtin(void);
 
 /* 5_LIST UTILS */
 t_list	ft_list_init(void);
 int		ft_list_push_back(void	*content, t_list *list);
 void	ft_list_clear(t_list *list);
 int		ft_list_del_node(t_list *list, t_node *node);
-int		ft_exit_builtin(t_list *mini_ev, t_parse *parse,
-			t_exec *exec, t_exec_info *exec_info);
-int		ft_export_builtin(t_info *info, t_exec_info *exec_info);
-int		ft_pwd_builtin(void);
-int		ft_unset_builtin(t_info *info, t_exec_info *exec_info);
 void	*list_content_finder(t_node *head, void *content);
 
 /* 6_UTILS */

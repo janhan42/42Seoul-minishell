@@ -6,11 +6,12 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:43:03 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/27 20:19:23 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/05 09:06:20 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stdlib.h>
 
 static void	ft_change_oldpwd(t_info *info)
 {
@@ -69,7 +70,24 @@ static char	*ft_find_path(t_info *info)
 	return (path);
 }
 
-int	ft_cd_builtin(t_info *info, t_exec_info *exec_info)
+static int	ft_cd_err(t_exec_info *exec_info, t_parse *parse, char *path)
+{
+	if (ft_strncmp(parse->token->original, "$HOME", 5) == 0
+		&& exec_info->builtin_parent == TRUE)
+	{
+		ft_printf_err("minishell: cd: HOME not set\n");
+		return (NOT_HOME);
+	}
+	else if (exec_info->builtin_parent == TRUE)
+	{
+		ft_printf_err("minishell: cd: %s: ", path);
+		return (ft_perror(SUCCESS));
+	}
+	else
+		exit(EXIT_SUCCESS);
+}
+
+int	ft_cd_builtin(t_info *info, t_exec_info *exec_info, t_parse *parse)
 {
 	char	*path;
 
@@ -80,13 +98,7 @@ int	ft_cd_builtin(t_info *info, t_exec_info *exec_info)
 	if (chdir(path) == FAILURE)
 	{
 		g_child_exit_code = 1;
-		if (exec_info->builtin_parent == TRUE)
-		{
-			ft_printf_err("cd: %s: ", path);
-			return (ft_perror(SUCCESS));
-		}
-		else
-			exit(EXIT_SUCCESS);
+		ft_cd_err(exec_info, parse, path);
 	}
 	ft_change_pwd(info);
 	if (exec_info->builtin_parent == TRUE)

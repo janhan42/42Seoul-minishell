@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:01:00 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 22:23:02 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/05 08:36:32 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_exec_builtin(t_info *info, t_parse *parse,
 	t_exec *exec, t_exec_info *exec_info)
 {
 	if (ft_strncmp(exec_info->cmd[0], "cd", ft_strlen("cd") + 1) == 0)
-		ft_cd_builtin(info, exec_info);
+		ft_cd_builtin(info, exec_info, parse);
 	if (ft_strncmp(exec_info->cmd[0], "export", ft_strlen("export") + 1) == 0)
 		ft_export_builtin(info, exec_info);
 	if (ft_strncmp(exec_info->cmd[0], "unset", ft_strlen("unset") + 1) == 0)
