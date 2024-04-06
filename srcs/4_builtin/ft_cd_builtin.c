@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:43:03 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/05 09:06:20 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/06 08:43:27 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	ft_change_oldpwd(t_info *info)
 	result = ft_strjoin(oldpwd, path);
 	free(oldpwd);
 	free(current->content);
-	current->content = result;
+	current->content = &result;
 }
 
 static void	ft_change_pwd(t_info *info)
@@ -55,7 +55,7 @@ static void	ft_change_pwd(t_info *info)
 	result = ft_strjoin(oldpwd, path);
 	free(oldpwd);
 	free(current->content);
-	current->content = result;
+	current->content = &result;
 }
 
 static char	*ft_find_path(t_info *info)

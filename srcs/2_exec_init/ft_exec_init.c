@@ -6,12 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:51:30 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/23 21:04:34 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/06 09:05:54 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stddef.h>
 
 static void	ft_get_exec_arr_size(t_parse *parse, t_exec *exec)
 {
