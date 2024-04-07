@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:59:19 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/07 23:37:09 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/08 00:59:03 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,24 @@ void ft_remake_line(t_parse *parse)
 	blank_flag = 0;
 	parse->str_index = 0;
 	parse->token_index = 0;
+	printf("parse->line : %ld\n", ft_strlen(parse->line));
 	while (parse->line[parse->str_index])
 	{
-		temp[j] = parse->line[parse->str_index];
+		if (parse->line[parse->str_index] == '$')
+		{
+			parse->str_index = 0;
+			break ;
+		}
+		parse->str_index++;
+	}
+	if (parse->line[parse->str_index] == '\0')
+		return ;
+	while (parse->line[parse->str_index])
+	{
+		temp[j] = parse->line[parse->str_index]; // parse->line젤뒤에도 쓰레기값 들어옴zzz
+		printf("parse->line[parse->str_index] : %c\n", parse->line[parse->str_index]);
+		printf("str_index : %ld\n", parse->str_index);
+		printf("j : %d\n", j);
 		if (parse->line[parse->str_index] == ' ' && blank_flag == 0)
 		{
 			parse->token_index++;
@@ -145,32 +160,64 @@ void ft_remake_line(t_parse *parse)
 			{
 				i = 0;
 				while (parse->tokens[parse->token_index].str[i])
+				// 지금 토큰 제일 마지막에 쓰레기값 들어가있음
 				{
 					temp[j + i] = parse->tokens[parse->token_index].str[i];
 					i++;  // i 글자만큼 복사했음
 				}
+				parse->tokens[parse->token_index].env_flag = FALSE;
+				parse->token_index++;
+				temp[j + i] = ' ';
 				if (double_quote == 1)
+				{
 					while(parse->line[parse->str_index] && parse->line[parse->str_index] != '\"')
 					{
 						parse->str_index++;
 					}
+					//parse->start_index--;
+				}
 				else
+				{
 					while(parse->line[parse->str_index] && parse->line[parse->str_index] != ' ')
 					{
 						parse->str_index++;
 					}
+					if (parse->line[parse->str_index] == 0)
+					{
+						// 아무리 생각해도 line이 이상하게 들어올때가 있음 ㅠㅠ
+						parse->start_index-= 2;
+					}
+					//parse->start_index--;
+				}
 			}
 		}
 		j += i + 1;
+		i = 0;
 		parse->str_index++;
 	}
 	temp[j - 1] = '\0';
+	printf("last line : %s\n", temp);
+	/*
+	printf("temp[0] : %c\n", temp[0]);
+	printf("temp[1] : %c\n", temp[1]);
+	printf("temp[2] : %c\n", temp[2]);
+	printf("temp[3] : %c\n", temp[3]);
+	printf("temp[4] : %c\n", temp[4]);
+	printf("temp[5] : %c\n", temp[5]);
+	printf("temp[6] : %c\n", temp[6]);
+	printf("temp[7] : %c\n", temp[7]);
+	printf("temp[8] : %c\n", temp[8]);
+	printf("temp[9] : %d\n", temp[9]);
+	printf("temp[10] : %d\n", temp[10]);
+	printf("temp[11] : %d\n", temp[11]);
+	*/
 	free(parse->line);
 	parse->line = ft_strdup(temp);
 	//ft_free_tokens(parse, parse->token_count);
-	//ft_parse_init(parse);
-	//ft_ready_tokenization(parse);
-	//ft_tokenization(parse); //
+	ft_parse_init(parse);
+	ft_count_token(parse);
+	ft_ready_tokenization(parse);
+	ft_tokenization(parse); //
 	 // <- 여기 0으로 넣으면 프리 안되낭 거기 원래 parse->token_count 넣는거 이전 parse 프리하고 다시 만들거야? ㅇ트
 	// 아예 첨부터 싹 만들어야함 ㄱㄱ rcrcㄱㅍㄱㅊ 헤더에 다 넣고왔다 ㄹㅇ ㅋㅋ
 	//  아니 형 근데 여기 들어오지도 않는데?ㅋㅋㅋ 씨발 이젠 되는게 없노 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ 안됨
@@ -226,7 +273,6 @@ int	ft_convert_env(t_info *info, t_parse *parse)
 		parse->token_index++;
 	}
 	ft_remake_line(parse);
-	//printf("last: %s\n", parse->line); // ls -l 잘 바뀌었는데 왜저래? 음 아
 
 	return (SUCCESS);
 }
