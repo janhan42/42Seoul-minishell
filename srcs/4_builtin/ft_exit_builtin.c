@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 09:03:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/07 23:15:04 by janhan           ###   ########.fr       */
+/*   Updated: 2024/03/30 15:49:16 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	ft_exit_builtin_isnum(t_exec *exec)
 		i++;
 	}
 	ft_exit_builtin_arg_check(exec, i, sign_flag);
-	ft_printf_err("exit\n");
+	printf("exit\n");
 }
 
 static void	ft_exit_builtin_no_arg(t_list *mini_ev, t_parse *parse,

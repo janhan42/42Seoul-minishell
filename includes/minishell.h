@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/07 23:12:05 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/08 15:32:16 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,8 +164,6 @@ void	ft_print_logo(void);
 
 /* 1_PARSING */
 int		ft_parse(t_info *info, t_parse *parse);
-void	ft_parse_init(t_parse *parse);
-int		ft_ready_tokenization(t_parse *parse);
 int		ft_count_token(t_parse *parse);
 int		ft_convert_child_exit_code(t_parse *parse);
 int		ft_convert_env(t_info *info, t_parse *parse);
@@ -184,6 +182,7 @@ int		ft_here_doc_loop_check(t_exec *exec);
 int		ft_check_here_doc(t_exec *exec);
 void	ft_cmd_path_error_handle(t_exec_info *exec_info, char *cmd_path);
 void	ft_cmd_null_handle(t_exec_info *exec_info);
+int		ft_space_handle(t_exec_info *exec_info);
 char	*ft_make_path(t_exec_info *exec_info, char *path);
 int		ft_exec_builtin_parent(t_info *info, t_parse *parse,
 			t_exec *exec, t_exec_info *exec_info);

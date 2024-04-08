@@ -6,13 +6,13 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:03:14 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/07 23:11:45 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/03 16:08:14 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_parse_init(t_parse *parse)
+static void	ft_parse_init(t_parse *parse)
 {
 	parse->line_index = 0;
 	while (ft_is_space(parse->line[parse->line_index]))
@@ -24,7 +24,8 @@ void	ft_parse_init(t_parse *parse)
 	parse->squote_flag = FALSE;
 	parse->dquote_flag = FALSE;
 }
-int	ft_ready_tokenization(t_parse *parse)
+
+static int	ft_ready_tokenization(t_parse *parse)
 {
 	parse->line_index = 0;
 	parse->tokens = (t_token *)ft_calloc(parse->token_count, sizeof(t_token));

@@ -6,14 +6,14 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 13:41:14 by janhan            #+#    #+#              #
-#    Updated: 2024/04/07 23:52:23 by sangshin         ###   ########.fr        #
+#    Updated: 2024/04/08 15:27:23 by janhan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME					=	minishell
 
 CC						=	cc
-CFLAGS					=	-Wall -Wextra -Werror# -fsanitize=address
+CFLAGS					=	-Wall -Wextra -Werror # -fsanitize=address
 RM						=	rm -f
 
 READLINE_LINK			=	-l readline
@@ -51,6 +51,7 @@ SRCS					=	srcs/main.c										\
 							srcs/3_exec/ft_here_doc_loop_check.c			\
 							srcs/3_exec/ft_set_pipe_fd.c					\
 							srcs/3_exec/ft_set_redirect_fd.c				\
+							srcs/3_exec/ft_space_handle.c					\
 							srcs/4_builtin/ft_cd_builtin.c					\
 							srcs/4_builtin/ft_echo_builtin.c				\
 							srcs/4_builtin/ft_env_builtin.c					\
