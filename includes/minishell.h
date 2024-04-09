@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/08 15:32:16 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/09 20:43:31 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,4 +226,12 @@ int		ft_is_builtin(t_exec_info *exec_info);
 int		ft_perror(int error_code);
 void	ft_free_exec(t_exec *exec, size_t exec_arr_i);
 void	ft_free_all(t_parse *parse, t_exec *exec);
+
+/* 7_SUBSTITUTE ENV */
+int		ft_substitute_env(t_info *info, t_parse *parse);
+int		ft_is_in_single_quote(char *line, int i);
+char	*ft_get_env_name(char *line);
+char	*ft_get_env_value(t_info *info, char *env_name);
+int		ft_is_special_dallor(char *line);
+int		ft_count_dallor(char *line);
 #endif

@@ -6,7 +6,7 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 13:41:14 by janhan            #+#    #+#              #
-#    Updated: 2024/04/08 15:27:23 by janhan           ###   ########.fr        #
+#    Updated: 2024/04/09 20:49:25 by sangshin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,9 @@ SRCS					=	srcs/main.c										\
 							srcs/6_utils/ft_is_space.c						\
 							srcs/6_utils/ft_perror.c						\
 							srcs/6_utils/ft_print_logo.c					\
+							srcs/7_subs_env//ft_count_dallor.c				\
+							srcs/7_subs_env/ft_get_env.c					\
+							srcs/7_subs_env/ft_substitute_env.c				\
 							srcs/gnl/get_next_line_utils.c					\
 							srcs/gnl/get_next_line.c
 
