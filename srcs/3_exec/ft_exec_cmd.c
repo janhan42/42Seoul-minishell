@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/08 16:36:38 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/09 19:14:05 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,13 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	ft_set_fd(exec, exec_info);
+
+	/*
+	printf("%s\n", exec_info->cmd_path);
+	for (int i = 0; exec_info->cmd[i]; i++)
+		printf("exec_info->cmd [%d]: %s\n", i, exec_info->cmd[i]);
+	*/
+
 	if (ft_strchr(exec_info->cmd[0], ' ') != 0)
 		if (ft_space_handle(exec_info) == FAILURE)
 			exit(1);
