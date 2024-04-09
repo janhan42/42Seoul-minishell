@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/03 16:12:22 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/09 16:23:59 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int ac, char **av, char **ev)
 	t_exec		exec;
 
 	ft_init(ac, av, ev, &info);
+	printf("이 출력문은 main에 있습니다,\nft_echo_builtin에서 이번 이슈 fix해야함.\n");
 	while (TRUE)
 	{
 		ft_sig_init(&info);
