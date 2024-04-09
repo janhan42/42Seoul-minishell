@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:59:19 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/03 16:08:11 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/07 22:23:08 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,41 @@ static int	ft_add_env(t_parse *parse)
 	return (SUCCESS);
 }
 
+static void	remake_line(t_info *info, t_parse *parse)
+{
+	int	i;
+	int	j;
+	int	k;
+	char	tmp[1000];
+
+	i = 0;
+	k = 0;
+	info = 0;
+	while (parse->line[k])
+	{
+		tmp[i] = parse->line[k];
+		if (tmp[i] == '$')
+		{
+			j = 0;
+			/*
+			while (parse->token->str[j])
+			{
+				tmp[i] = parse->token->str[j];
+				i++;
+				j++;
+			}
+			*/
+		}
+		i++;
+		k++;
+	}
+	// $test $test2
+	tmp[i] = 0;
+	free(parse->line);
+	parse->line = ft_strdup(tmp);
+	//ft_free_tokens(parse, parse->token_count);
+}
+
 static int	ft_find_env(t_info *info, t_parse *parse)
 {
 	ft_set_quote_flag(parse);
@@ -111,6 +146,14 @@ static int	ft_find_env(t_info *info, t_parse *parse)
 	}
 	return (SUCCESS);
 }
+// export test="ls -l"
+// line = echo $test hi
+// line = $test
+// parse->line = "echo $test"
+//  -> "echo ls -l"
+//  ft_free_tokens
+//  ft_parse
+//
 
 int	ft_convert_env(t_info *info, t_parse *parse)
 {
@@ -135,5 +178,6 @@ int	ft_convert_env(t_info *info, t_parse *parse)
 		}
 		parse->token_index++;
 	}
+	remake_line(info, parse);
 	return (SUCCESS);
 }
