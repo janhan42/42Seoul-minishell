@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/09 19:14:05 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:14:24 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,16 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 	printf("%s\n", exec_info->cmd_path);
 	for (int i = 0; exec_info->cmd[i]; i++)
 		printf("exec_info->cmd [%d]: %s\n", i, exec_info->cmd[i]);
-	*/
 
+	*/
+	/*
 	if (ft_strchr(exec_info->cmd[0], ' ') != 0)
 		if (ft_space_handle(exec_info) == FAILURE)
 			exit(1);
+	*/
+	//FIX: $empty 처럼 빈 문자열이 여기까지 오면 저 어딘가에서 문제가 생기는지
+	//exit code 가 139로 나옴
+	//일단 주석처리하니까 문제가 없어짐ㅋㅋ
 	if (ft_find_cmd(exec, exec_info, parse) == FAILURE
 		&& ft_is_builtin(exec_info) == FALSE)
 	{

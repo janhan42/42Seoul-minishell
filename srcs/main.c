@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/09 19:17:43 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:07:20 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,34 @@ int	ft_is_special_dallor(char *line)
 	while (line[i] != '$')
 		i++;
 	i++;
-	if (line[i] == '_' || line[i] == '-' || line[i] == '?'
+	if (line[i] == '_' || line[i] == '-' || line[i] == '?' || line[i] == '\0' || line[i] == ' ' || line[i] == '"'
 		|| ft_isdigit(line[i]))
 		return (TRUE);
 	return (FALSE);
+}
+
+int	ft_is_in_single_quote(char *line, int i)
+{
+	// line[i]가 작은 따옴표 안에 있는지 체크
+	// 근데 큰 따옴표 안에 있으면 false 반환
+	// 시바 이거 어캐체크함
+	int	count;
+	int	double_quote_flag;
+
+	count = 0;
+	double_quote_flag = FALSE;
+	while (i >= 0)
+	{
+		if (line[i] == '"')
+			double_quote_flag = !double_quote_flag;
+		if (line[i] == '\'' && double_quote_flag == FALSE)
+			count++;
+		i--;
+	}
+	if (count % 2 == 0 || double_quote_flag == TRUE)
+		return (FALSE);
+	else
+		return (TRUE);
 }
 
 int	ft_count_dallor(char *line)
@@ -34,7 +58,8 @@ int	ft_count_dallor(char *line)
 	count = 0;
 	while (line[i])
 	{
-		if (line[i] == '$' && !ft_is_special_dallor(&line[i]))
+		if (line[i] == '$' && !ft_is_special_dallor(&line[i])
+			&& ft_is_in_single_quote(line, i) == FALSE)
 			count++;
 		i++;
 	}
@@ -48,7 +73,7 @@ char	*ft_get_env_name(char *line)
 	char	*env_name;
 
 	i = 0;
-	while (line[i] != '$')
+	while (line[i] != '$' || ft_is_in_single_quote(line, i) == TRUE || ft_is_special_dallor(&line[i]) == TRUE)
 		i++;
 	i++;
 	start = i;
@@ -120,6 +145,9 @@ int	ft_substitue_env(t_info *info, t_parse *parse)
 
 	// 달러가 몇개 있는지 변수에 저장
 	// 해당 변수가 0이 될 때까지 반복
+	//
+	// count_dallor 에서 작은 따옴표 안에 있는 달러는 세지 않음
+	// ft_get_env_name 에서도 작은 따옴표 안에 있는 달러는 세지 않음
 	int		dallor_count;
 	char	*env_name;
 	char	*env_value;
@@ -157,7 +185,7 @@ int	main(int ac, char **av, char **ev)
 	t_exec		exec;
 
 	ft_init(ac, av, ev, &info);
-	printf("이 브랜치는 공사중 --sangshin\nDo not touch this branch --sangshin\n");
+	//printf("이 브랜치는 공사중 --sangshin\nDo not touch this branch --sangshin\n");
 	while (TRUE)
 	{
 		ft_sig_init(&info);
