@@ -6,7 +6,7 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 13:41:14 by janhan            #+#    #+#              #
-#    Updated: 2024/04/08 15:27:23 by janhan           ###   ########.fr        #
+#    Updated: 2024/04/10 15:53:09 by janhan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CC						=	cc
 CFLAGS					=	-Wall -Wextra -Werror # -fsanitize=address
 RM						=	rm -f
 
-READLINE_LINK			=	-l readline
+#READLINE_LINK			=	-l readline
 #	FOR M1 MAC
-#READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
+READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
 
 INCLUDES				=	includes/
 

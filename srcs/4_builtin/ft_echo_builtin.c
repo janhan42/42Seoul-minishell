@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:48:52 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/09 14:44:35 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/10 16:19:27 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	ft_echo_builtin_print_str(char **str, int n_flag)
 		printf("%s ", str[i]);
 		i++;
 	}
-	printf("%s", str[i]); // -> 환경변수 출력시 공백의 개수를 하나로 맞춰야함.
+	printf("%s ", str[i]);
 	if (n_flag == FALSE)
 		printf("\n");
 }

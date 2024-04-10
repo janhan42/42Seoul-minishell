@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:03:14 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/03 16:08:14 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/10 16:07:42 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	ft_parse(t_info *info, t_parse *parse)
 	}
 	if (parse->token->env_flag == FALSE || parse->token->str[0] == '\"')
 		ft_remove_quote(parse);
+	printf("현재 env_flag [%d]\n",parse->token->env_flag);
 	if (ft_syntax_check(parse) == FAILURE)
 	{
 		parse->token_index = parse->token_count;
