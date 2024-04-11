@@ -6,7 +6,7 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 13:41:14 by janhan            #+#    #+#              #
-#    Updated: 2024/04/10 15:53:09 by janhan           ###   ########.fr        #
+#    Updated: 2024/04/11 20:26:53 by janhan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS					=	srcs/main.c										\
 							srcs/1_parsing/ft_tokenization.c				\
 							srcs/2_exec_init/ft_exec_init.c					\
 							srcs/2_exec_init/ft_set_exec_info.c				\
+							srcs/2_exec_init/ft_flag_dup.c					\
 							srcs/3_exec/ft_check_here_doc.c					\
 							srcs/3_exec/ft_error_handle.c					\
 							srcs/3_exec/ft_exec_builtin_parent.c			\

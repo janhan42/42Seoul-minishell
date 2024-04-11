@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/10 16:25:54 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/11 20:25:23 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_token
 	char			*original;
 	char			*str;
 	int				env_flag;
+	int				sqoute_flag;
+	int				dqoute_flag;
 }	t_token;
 
 /* INFO STRUCT */
@@ -138,6 +140,9 @@ typedef struct s_exec_info
 	int				infile_fd;
 	int				outfile_fd;
 	int				builtin_parent;
+	int				*env_flags;
+	int				*dqoute_flags;
+	int				*sqoute_flags;
 }	t_exec_info;
 
 typedef struct s_exec
@@ -175,6 +180,8 @@ void	ft_remove_quote(t_parse *parse);
 /* 2_exec_init */
 int		ft_set_exec_info(t_parse *parse, t_exec_info *exec_info);
 int		ft_make_exec_info(t_info *info, t_parse *parse, t_exec *exec);
+int		*ft_dup_dqoute_flag(t_parse *parse);
+int		*ft_dup_sqoute_flag(t_parse *parse);
 
 /* 3_exec */
 int		ft_exec(t_info *info, t_parse *parse, t_exec *exec);

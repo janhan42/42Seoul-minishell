@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:48:52 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/10 16:19:27 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/11 20:26:22 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,14 @@ int	ft_echo_builtin(t_exec_info *exec_info)
 	size_t	cmd_i;
 	int		n_flag;
 
+	printf("ft_echo_builtin.c");
+	for (int i = 0; exec_info->cmd[i]; i++)
+	{
+		printf("exec_info->cmd[%d] : %s\n", i, exec_info->cmd[i]);
+		printf("exec_info->env_flag[%d] : %d\n", i, exec_info->env_flags[i]);
+		printf("exec_info->sqoute_flag[%d] : %d\n", i, exec_info->sqoute_flags[i]);
+		printf("exec_info->dqoute_flag[%d] : %d\n", i, exec_info->dqoute_flags[i]);
+	}
 	if (exec_info->cmd[1] == NULL)
 	{
 		printf("\n");
