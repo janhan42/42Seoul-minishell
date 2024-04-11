@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:32:02 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/11 20:18:56 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/11 21:17:44 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@ static void	ft_qoute_finder(t_parse *parse)
 		index++;
 	}
 	index++;
+	/*
 	printf("end_qoute : %c\n", end_quote);
 	printf("%ld ", index);
+	*/
 	while (parse->tokens[parse->token_index].str[index]
 		&& parse->tokens[parse->token_index].str[index] != end_quote)
 		index++;
-	printf("str[%ld] : %c\n", index, parse->tokens[parse->token_index].str[index]);
+	//printf("str[%ld] : %c\n", index, parse->tokens[parse->token_index].str[index]);
 	if (parse->tokens[parse->token_index].str[index] == end_quote)
 	{
 		if (end_quote == '"')
@@ -42,9 +44,11 @@ static void	ft_qoute_finder(t_parse *parse)
 		else if (end_quote == '\'')
 			parse->tokens[parse->token_index].sqoute_flag = TRUE;
 	}
+	/*
 	printf("%s\n", parse->tokens[parse->token_index].str);
 	printf("parse->tokens->sqoute_flag : %d\n", parse->tokens[parse->token_index].sqoute_flag);
 	printf("parse->tokens->dqoute_flag : %d\n", parse->tokens[parse->token_index].dqoute_flag);
+	*/
 }
 
 int	ft_make_token(t_parse *parse, t_token_type type)

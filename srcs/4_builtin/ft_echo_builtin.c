@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:48:52 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/11 20:26:22 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/11 21:16:53 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,34 @@ static void	ft_echo_builtin_print_str(char **str, int n_flag)
 		printf("\n");
 }
 
+static char	*ft_remove_space(char *string)
+{
+	int		index;
+	char	**list;
+	char	*one_line;
+	char	*tmp;
+
+	index = 0;
+	list = ft_split(string, ' ');
+	one_line = ft_strdup("");
+	while (list[index])
+	{
+		tmp = one_line;
+		one_line = ft_strjoin(one_line, list[index]);
+		free(tmp);
+		if (list[index + 1] != 0)
+		{
+			tmp = one_line;
+			one_line = ft_strjoin(one_line, " ");
+			free(tmp);
+		}
+		free(list[index]);
+		index++;
+	}
+	free(list);
+	return (one_line);
+}
+
 int	ft_echo_builtin(t_exec_info *exec_info)
 {
 	char	**str;
@@ -79,7 +107,8 @@ int	ft_echo_builtin(t_exec_info *exec_info)
 	size_t	cmd_i;
 	int		n_flag;
 
-	printf("ft_echo_builtin.c");
+	/*
+	printf("ft_echo_builtin.c\n");
 	for (int i = 0; exec_info->cmd[i]; i++)
 	{
 		printf("exec_info->cmd[%d] : %s\n", i, exec_info->cmd[i]);
@@ -87,6 +116,7 @@ int	ft_echo_builtin(t_exec_info *exec_info)
 		printf("exec_info->sqoute_flag[%d] : %d\n", i, exec_info->sqoute_flags[i]);
 		printf("exec_info->dqoute_flag[%d] : %d\n", i, exec_info->dqoute_flags[i]);
 	}
+	*/
 	if (exec_info->cmd[1] == NULL)
 	{
 		printf("\n");
@@ -98,7 +128,10 @@ int	ft_echo_builtin(t_exec_info *exec_info)
 	cmd_i = ft_echo_builtin_find_cmd_i(exec_info->cmd, &n_flag);
 	while (exec_info->cmd[cmd_i])
 	{
-		str[str_i] = exec_info->cmd[cmd_i];
+		if (exec_info->dqoute_flags[cmd_i] == 0 && exec_info->env_flags[cmd_i] == TRUE)
+			str[str_i] = ft_remove_space(exec_info->cmd[cmd_i]);
+		else
+			str[str_i] = exec_info->cmd[cmd_i];
 		str_i++;
 		cmd_i++;
 	}
