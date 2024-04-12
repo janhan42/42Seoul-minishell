@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:48:52 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/11 21:16:53 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:57:03 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	ft_echo_builtin_print_str(char **str, int n_flag)
 		printf("%s ", str[i]);
 		i++;
 	}
-	printf("%s ", str[i]);
+	printf("%s", str[i]);
 	if (n_flag == FALSE)
 		printf("\n");
 }
