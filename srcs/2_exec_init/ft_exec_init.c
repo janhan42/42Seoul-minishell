@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:51:30 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/11 20:25:31 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/12 13:22:24 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int	ft_add_exec_info(t_parse *parse, t_exec *exec)
 			return (FAILURE);
 		}
 		exec_arr_i++;
-		parse->token_index++;
+		//parse->token_index++;
 	}
 	return (SUCCESS);
 }
