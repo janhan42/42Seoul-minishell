@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:03:14 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/11 19:59:31 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/14 15:26:18 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ int	ft_parse(t_info *info, t_parse *parse)
 		ft_free_tokens(parse, parse->token_count);
 		return (FAILURE);
 	}
-	if (parse->token->env_flag == FALSE || parse->token->str[0] == '\"')
-		ft_remove_quote(parse);
+	// if (parse->token->env_flag == FALSE || parse->token->str[0] == '"')
+	// 	ft_remove_quote(parse); // export a="'asd" 같은 경우 처리용이였는데 ft_remove_quote안에서 플래그 처리 함.
+	ft_remove_quote(parse);
+	printf("=============ft_parse=============\nparse->token->str [%s]\nparse->token->original [%s]\nparse->token->env_flag [%d]\n", parse->token->str, parse->token->original, parse->token->env_flag);
 	if (ft_syntax_check(parse) == FAILURE)
 	{
 		parse->token_index = parse->token_count;
