@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:22:26 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/01 19:23:31 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/14 14:35:28 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	ft_free_exec(t_exec *exec, size_t exec_arr_i)
 	{
 		free(exec->exec_arr[i].cmd);
 		free(exec->exec_arr[i].redirect);
+		free(exec->exec_arr[i].env_flags);
+		free(exec->exec_arr[i].dqoute_flags);
+		free(exec->exec_arr[i].sqoute_flags);
 		i++;
 	}
 	free(exec->exec_arr);

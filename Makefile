@@ -13,12 +13,12 @@
 NAME					=	minishell
 
 CC						=	cc
-CFLAGS					=	-Wall -Wextra -Werror -fsanitize=address
+CFLAGS					=	-Wall -Wextra -Werror #-fsanitize=address
 RM						=	rm -f
 
-READLINE_LINK			=	-l readline
+#READLINE_LINK			=	-l readline
 #	FOR M1 MAC
-#READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
+READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
 
 INCLUDES				=	includes/
 
