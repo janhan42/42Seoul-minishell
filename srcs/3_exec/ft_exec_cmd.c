@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/14 15:27:25 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/14 17:31:41 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 		{
 			execve(exec_info->cmd_path, exec_info->cmd,
 				ft_make_envp(&info->mini_ev));
-
 		}
 	}
 }

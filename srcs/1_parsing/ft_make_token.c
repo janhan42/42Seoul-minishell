@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:32:02 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/14 14:20:12 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/14 17:31:16 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	ft_qoute_finder(t_parse *parse)
 		}
 		index++;
 	}
-	// index++;
 	while (parse->tokens[parse->token_index].str[index] != '\0'
 		&& parse->tokens[parse->token_index].str[index] != end_quote)
 		index++;
