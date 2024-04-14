@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 14:05:15 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/25 22:47:45 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/15 08:02:29 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@ void	ft_list_clear1(t_list *list) // 연결리스트 전체 삭제
 
 void	ft_list_clear(t_list *list)
 {
-	t_node	*tmp;
+	t_node	*current;
 	t_node	*next;
 
-	tmp = list->front_node;
-	while (tmp)
+	current = list->front_node;
+	while (current)
 	{
-		next = tmp->next_node;
-		free(tmp->content);
-		free(tmp);
-		tmp = next;
+		next = current->next_node;
+		free(current->content);
+		if (current)
+			free(current);
+		current = next;
 	}
 }
 

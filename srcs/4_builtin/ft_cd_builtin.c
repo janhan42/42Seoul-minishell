@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:43:03 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/06 08:43:27 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/15 08:27:37 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,48 @@ static void	ft_change_oldpwd(t_info *info)
 	}
 	getcwd(path, sizeof(path));
 	result = ft_strjoin(oldpwd, path);
-	free(oldpwd);
+	if (!result)
+	{
+		free(oldpwd);
+		exit (ft_error("ft_strjoin faild", FAILURE));
+	}
 	free(current->content);
-	current->content = &result;
+	current->content = ft_strdup(result);
+	free(result);
+	free(oldpwd);
 }
 
 static void	ft_change_pwd(t_info *info)
 {
 	char	path[PATH_MAX];
-	char	*oldpwd;
-	char	*result;
+	char	*pwd;
+	char	*result = NULL;
 	t_node	*current;
 
-	oldpwd = ft_strdup("PWD=");
-	if (!oldpwd)
+	pwd = ft_strdup("PWD=");
+	if (!pwd)
 		exit(ft_error("PWD malloc failed", FAILURE));
 	current = info->mini_ev.front_node;
+	printf("current->content : %s\n", (char *)current->content);
 	while (current && ft_strncmp(current->content, "PWD=", 4))
 		current = current->next_node;
 	getcwd(path, sizeof(path));
-	result = ft_strjoin(oldpwd, path);
-	free(oldpwd);
+	result = ft_strjoin(pwd, path);
+	if (!result)
+	{
+		free(pwd);
+		exit(ft_error("ft_strjoin failed", FAILURE));
+	}
 	free(current->content);
-	current->content = &result;
+	current->content = ft_strdup(result);
+	if (!current->content)
+	{
+		free(pwd);
+		free(result);
+		exit(ft_error("ft_strdup failed", FAILURE));
+	}
+	free(pwd);
+	free(result);
 }
 
 static char	*ft_find_path(t_info *info)
