@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/14 17:31:41 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/15 00:15:23 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 	if (ft_strchr(exec_info->cmd[0], ' ') != 0)
 		if (ft_space_handle(exec_info) == FAILURE)
 			exit(1);
-	printf("=============ft_exec_cmd==========\n%d %d\n%s\n", ft_find_cmd(exec, exec_info, parse), ft_is_builtin(exec_info), exec_info->cmd_path);
+	printf("=============ft_exec_cmd==========\nft_find_cmd :[%d]\nft_is_builtin : [%d]\n%s\n", ft_find_cmd(exec, exec_info, parse), ft_is_builtin(exec_info), exec_info->cmd_path);
 	if (ft_find_cmd(exec, exec_info, parse) == FAILURE
 		&& ft_is_builtin(exec_info) == FALSE)
 	{

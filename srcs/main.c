@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/14 13:56:36 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/15 00:12:25 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,5 @@ int	main(int ac, char **av, char **ev)
 		ft_parse_execute(&info, &parse, &exec);
 		free(parse.line);
 	}
-	atexit(check);
 	return (EXIT_SUCCESS);
 }
