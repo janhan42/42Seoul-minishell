@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 18:51:30 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/12 13:22:24 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/14 09:01:08 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	*ft_dup_flag(t_parse *parse)
 {
-	int	*result;
+	int		*result;
 	size_t	token_index;
 
 	token_index = 0;
@@ -76,7 +76,7 @@ static int	ft_add_exec_info(t_parse *parse, t_exec *exec)
 			return (FAILURE);
 		}
 		exec_arr_i++;
-		//parse->token_index++;
+		//parse->token_index++; ??????
 	}
 	return (SUCCESS);
 }

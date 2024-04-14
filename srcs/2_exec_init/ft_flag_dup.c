@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 20:20:33 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/11 20:25:06 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/14 08:10:36 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	*ft_dup_dqoute_flag(t_parse *parse)
 {
-	int	*result;
+	int		*result;
 	size_t	index;
 
 	index = 0;
@@ -28,9 +28,10 @@ int	*ft_dup_dqoute_flag(t_parse *parse)
 	}
 	return (result);
 }
+
 int	*ft_dup_sqoute_flag(t_parse *parse)
 {
-	int	*result;
+	int		*result;
 	size_t	index;
 
 	index = 0;

@@ -6,18 +6,22 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:48:52 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/12 12:57:03 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/14 09:02:07 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include <stddef.h>
 
-static char	**ft_echo_builtin_malloc_str(t_exec_info *exec_info)
+static char	**ft_echo_builtin_malloc_str(t_exec_info *exec_info, size_t *str_i,
+int *n_flag)
 {
 	char	**str;
 	size_t	str_size;
 
 	str_size = 1;
+	*str_i = 0;
+	*n_flag = FALSE;
 	while (exec_info->cmd[str_size])
 		str_size++;
 	str = (char **)ft_calloc(str_size, sizeof(char *));
@@ -62,7 +66,7 @@ static void	ft_echo_builtin_print_str(char **str, int n_flag)
 	size_t	i;
 
 	i = 0;
-	while (str[i + 1]) // echo 이후 인자가 여러개일 경우
+	while (str[i + 1])
 	{
 		printf("%s ", str[i]);
 		i++;
@@ -72,34 +76,6 @@ static void	ft_echo_builtin_print_str(char **str, int n_flag)
 		printf("\n");
 }
 
-static char	*ft_remove_space(char *string)
-{
-	int		index;
-	char	**list;
-	char	*one_line;
-	char	*tmp;
-
-	index = 0;
-	list = ft_split(string, ' ');
-	one_line = ft_strdup("");
-	while (list[index])
-	{
-		tmp = one_line;
-		one_line = ft_strjoin(one_line, list[index]);
-		free(tmp);
-		if (list[index + 1] != 0)
-		{
-			tmp = one_line;
-			one_line = ft_strjoin(one_line, " ");
-			free(tmp);
-		}
-		free(list[index]);
-		index++;
-	}
-	free(list);
-	return (one_line);
-}
-
 int	ft_echo_builtin(t_exec_info *exec_info)
 {
 	char	**str;
@@ -107,28 +83,17 @@ int	ft_echo_builtin(t_exec_info *exec_info)
 	size_t	cmd_i;
 	int		n_flag;
 
-	/*
-	printf("ft_echo_builtin.c\n");
-	for (int i = 0; exec_info->cmd[i]; i++)
-	{
-		printf("exec_info->cmd[%d] : %s\n", i, exec_info->cmd[i]);
-		printf("exec_info->env_flag[%d] : %d\n", i, exec_info->env_flags[i]);
-		printf("exec_info->sqoute_flag[%d] : %d\n", i, exec_info->sqoute_flags[i]);
-		printf("exec_info->dqoute_flag[%d] : %d\n", i, exec_info->dqoute_flags[i]);
-	}
-	*/
 	if (exec_info->cmd[1] == NULL)
 	{
 		printf("\n");
 		exit(SUCCESS);
 	}
-	str = ft_echo_builtin_malloc_str(exec_info);
-	n_flag = FALSE;
-	str_i = 0;
+	str = ft_echo_builtin_malloc_str(exec_info, &str_i, &n_flag);
 	cmd_i = ft_echo_builtin_find_cmd_i(exec_info->cmd, &n_flag);
 	while (exec_info->cmd[cmd_i])
 	{
-		if (exec_info->dqoute_flags[cmd_i] == 0 && exec_info->env_flags[cmd_i] == TRUE)
+		if (exec_info->dqoute_flags[cmd_i] == 0
+			&& exec_info->env_flags[cmd_i] == TRUE)
 			str[str_i] = ft_remove_space(exec_info->cmd[cmd_i]);
 		else
 			str[str_i] = exec_info->cmd[cmd_i];

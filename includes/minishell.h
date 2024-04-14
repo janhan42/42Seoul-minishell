@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/11 20:25:23 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/14 08:51:11 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,7 @@ void	ft_set_redirect_fd(t_exec_info *exec_info);
 /* 4_builtin */
 int		ft_cd_builtin(t_info *info, t_exec_info *exec_info, t_parse *parse);
 int		ft_echo_builtin(t_exec_info *exec_info);
+char	*ft_remove_space(char *string);
 int		ft_env_builtin(t_info *info);
 int		ft_unset_builtin(t_info *info, t_exec_info *exec_info);
 int		ft_exit_builtin(t_list *mini_ev, t_parse *parse,

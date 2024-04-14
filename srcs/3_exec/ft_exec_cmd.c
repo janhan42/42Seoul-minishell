@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/08 16:36:38 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/14 13:55:11 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 	{
 		ft_printf_err("minishell: %s: No such file or directory\n",
 			exec_info->cmd[0]);
-		ft_free_all(parse, exec);
 		exit(127);
 	}
 	if (ft_access_path(exec, exec_info) == SUCCESS)
@@ -122,7 +121,6 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 		&& ft_is_builtin(exec_info) == FALSE)
 	{
 		ft_printf_err("minishell: %s: command not found\n", exec_info->cmd[0]);
-		ft_free_all(parse, exec);
 		exit(127);
 	}
 	else
