@@ -6,7 +6,7 @@
 /*   By: sangshin <zxcv1867@naver.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:36:16 by sangshin          #+#    #+#             */
-/*   Updated: 2024/04/15 16:51:03 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:41:53 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,49 @@ int	ft_is_in_single_quote(char *line, int i)
 		return (TRUE);
 }
 
+int	ft_is_there_squote(char *env_value)
+{
+	int	i;
+	i = 0;
+	while (env_value[i])
+	{
+		if (env_value[i] == '\'')
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
+}
+
+// arr[0] = start 
+// arr[1] = end 
+// arr[2] = new_line
 static void	ft_replace_str(char **line, char *env_name, char *env_value)
 {
-	char	*new_line;
-	char	*start;
-	char	*end;
+	char	*arr[3];
 	char	*env_name_with_dallor;
 	int		i;
+	int		squote_flag;
 
+	squote_flag = ft_is_there_squote(env_value);
 	env_name_with_dallor = ft_strjoin("$", env_name);
-	start = ft_strnstr(*line, env_name_with_dallor, ft_strlen(*line));
-	end = start + ft_strlen(env_name) + 1;
-	new_line = ft_calloc(ft_strlen(*line) + ft_strlen(env_value)
-			- ft_strlen(env_name) + 1, sizeof(char));
+	arr[0] = ft_strnstr(*line, env_name_with_dallor, ft_strlen(*line));
+	arr[1] = arr[0] + ft_strlen(env_name) + 1;
+	arr[2] = ft_calloc(ft_strlen(*line) + ft_strlen(env_value)
+			- ft_strlen(env_name) + 1 + (squote_flag * 2), sizeof(char));
 	i = 0;
-	while (*line != start)
-		new_line[i++] = *(*line)++;
+	while (*line != arr[0])
+		arr[2][i++] = *(*line)++;
 	*line -= i;
+	if (squote_flag)
+		arr[2][i++] = '"';
 	while (*env_value)
-		new_line[i++] = *env_value++;
-	while (*end)
-		new_line[i++] = *end++;
+		arr[2][i++] = *env_value++;
+	if (squote_flag)
+		arr[2][i++] = '"';
+	while (*arr[1])
+		arr[2][i++] = *arr[1]++;
 	free(*line);
-	*line = new_line;
+	*line = arr[2];
 }
 
 int	ft_substitute_env(t_info *info, t_parse *parse)

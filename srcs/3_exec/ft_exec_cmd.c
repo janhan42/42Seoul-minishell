@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/09 20:31:42 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:43:10 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,14 +115,6 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	ft_set_fd(exec, exec_info);
-	/*
-	if (ft_strchr(exec_info->cmd[0], ' ') != 0)
-		if (ft_space_handle(exec_info) == FAILURE)
-			exit(1);
-	*/
-	//FIX: $empty 처럼 빈 문자열이 여기까지 오면 저 어딘가에서 문제가 생기는지
-	//exit code 가 139로 나옴
-	//일단 주석처리하니까 문제가 없어짐ㅋㅋ
 	if (ft_find_cmd(exec, exec_info, parse) == FAILURE
 		&& ft_is_builtin(exec_info) == FALSE)
 	{

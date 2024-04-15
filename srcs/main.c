@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/15 16:06:22 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:42:26 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static void	ft_parse_execute(t_info *info, t_parse *parse, t_exec *exec)
 {
 	ft_substitute_env(info, parse);
+	if (parse->line[0] == '\0')
+		return ;
 	if (ft_parse(info, parse) == FAILURE)
 		return ;
 	if (ft_make_exec_info(info, parse, exec) == FAILURE)
@@ -31,7 +33,6 @@ int	main(int ac, char **av, char **ev)
 	t_exec		exec;
 
 	ft_init(ac, av, ev, &info);
-	//printf("이 브랜치는 공사중 --sangshin\nDo not touch this branch --sangshin\n");
 	while (TRUE)
 	{
 		ft_sig_init(&info);
