@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 00:32:36 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/14 15:20:48 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/15 15:10:42 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_remove_quote(t_parse *parse)
 	{
 		parse->token = &parse->tokens[parse->token_index];
 		parse->str_index = 0;
-		while (parse->token->env_flag == FALSE &&
+		while ((parse->token->env_flag == FALSE || parse->token->str[0] == '"') &&
 			parse->token->str[parse->str_index])
 		{
 			ft_find_quote(parse);
