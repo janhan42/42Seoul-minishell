@@ -6,7 +6,7 @@
 /*   By: sangshin <zxcv1867@naver.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:36:16 by sangshin          #+#    #+#             */
-/*   Updated: 2024/04/15 17:41:53 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:48:54 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	ft_is_in_single_quote(char *line, int i)
 int	ft_is_there_squote(char *env_value)
 {
 	int	i;
+
 	i = 0;
 	while (env_value[i])
 	{
