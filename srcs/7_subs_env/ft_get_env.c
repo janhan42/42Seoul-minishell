@@ -6,7 +6,7 @@
 /*   By: sangshin <zxcv1867@naver.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:40:21 by sangshin          #+#    #+#             */
-/*   Updated: 2024/04/09 20:51:14 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/15 16:27:16 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ char	*ft_get_env_value(t_info *info, char *env_name)
 		}
 		node = node->next_node;
 	}
+	free(env_name_with_eq);
 	return ("");
 }

@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/09 20:43:53 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/15 16:06:22 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int ac, char **av, char **ev)
 	t_exec		exec;
 
 	ft_init(ac, av, ev, &info);
-	printf("이 브랜치는 공사중 --sangshin\nDo not touch this branch --sangshin\n");
+	//printf("이 브랜치는 공사중 --sangshin\nDo not touch this branch --sangshin\n");
 	while (TRUE)
 	{
 		ft_sig_init(&info);
