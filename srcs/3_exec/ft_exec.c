@@ -6,12 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:25:46 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/14 14:29:03 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/19 23:38:54 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <sys/signal.h>
 
 static int	ft_parent(t_exec *exec, t_exec_info *exec_info)
 {
@@ -43,7 +42,11 @@ static int	ft_make_child(t_info *info, t_parse *parse,
 		return (ft_perror(FAILURE));
 	}
 	else if (exec_info->pid == CHILD_PID)
+	{
+		signal(SIGINT, ft_sig_for_child);
+		signal(SIGQUIT, ft_sig_for_child);
 		ft_exec_cmd(info, parse, exec, exec_info);
+	}
 	else
 	{
 		if (ft_parent(exec, exec_info) == FAILURE)

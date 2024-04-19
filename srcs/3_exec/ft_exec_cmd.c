@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/15 14:43:06 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/19 23:39:39 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,12 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 	char	*cmd_path;
 
 	cmd_path = exec_info->cmd_path;
+	if (ft_cmd_error_sup(exec_info) == FAILURE)
+		return (FAILURE);
 	if (parse->dquote_flag == TRUE && cmd_path[0] == 0)
 		return (FAILURE);
-	if (cmd_path == NULL)
+	if(ft_find_error(cmd_path, exec, exec_info) == SUCCESS)
 		return (SUCCESS);
-	if ((cmd_path[0] == '.' && cmd_path[1] == '/') || cmd_path[0] == '/')
-	{
-		ft_cmd_is_directory(cmd_path);
-		ft_cmd_path_error_handle(exec_info, cmd_path);
-		if (access(cmd_path, X_OK) == SUCCESS)
-			return (SUCCESS);
-	}
-	if ((exec->path_ev[0] == NULL && !ft_is_builtin(exec_info)))
-	{
-		ft_printf_err("minishell: %s: No such file or directory\n",
-			exec_info->cmd[0]);
-		exit(127);
-	}
 	if (ft_access_path(exec, exec_info) == SUCCESS)
 		return (SUCCESS);
 	return (FAILURE);
@@ -88,6 +77,8 @@ static char	**ft_make_envp(t_list *mini_envp)
 
 	count = 0;
 	node = mini_envp->front_node;
+	if (node == NULL) // mini_envp가 없을때.
+		return (NULL);
 	while (node->next_node != NULL)
 	{
 		count++;
@@ -117,7 +108,6 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 	if (ft_strchr(exec_info->cmd[0], ' ') != 0)
 		if (ft_space_handle(exec_info) == FAILURE)
 			exit(1);
-	// printf("=============ft_exec_cmd==========\nft_find_cmd->return[%d]\nft_is_builtin->return[%d]\n%s\n", ft_find_cmd(exec, exec_info, parse), ft_is_builtin(exec_info), exec_info->cmd_path);
 	if (ft_find_cmd(exec, exec_info, parse) == FAILURE
 		&& ft_is_builtin(exec_info) == FALSE)
 	{

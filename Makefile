@@ -6,19 +6,19 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 13:41:14 by janhan            #+#    #+#              #
-#    Updated: 2024/04/15 08:18:47 by janhan           ###   ########.fr        #
+#    Updated: 2024/04/19 22:30:42 by janhan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME					=	minishell
 
 CC						=	cc
-CFLAGS					=	-Wall -Wextra -Werror #-fsanitize=address
+CFLAGS					=	-Wall -Wextra -Werror -g #-fsanitize=address
 RM						=	rm -f
 
-READLINE_LINK			=	-l readline
+#READLINE_LINK			=	-l readline
 #	FOR M1 MAC
-#READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
+READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
 
 INCLUDES				=	includes/
 
@@ -32,6 +32,7 @@ SRCS					=	srcs/main.c										\
 							srcs/0_init_utils/ft_init.c						\
 							srcs/0_init_utils/ft_mini_ev_init.c				\
 							srcs/0_init_utils/ft_sig_init.c					\
+							srcs/0_init_utils/ft_sig_init_2.c				\
 							srcs/1_parsing/ft_convert_child.c				\
 							srcs/1_parsing/ft_convert_env.c					\
 							srcs/1_parsing/ft_count_token.c					\

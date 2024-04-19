@@ -16,18 +16,71 @@ ___
 ### Issues
 
 ```
-exec_info를 만들때 ft_malloc_cmd로 사이즈 할당을 하는데
+. 하나만 넣을때 No chiled Process에러 발생
+bash: .: filename argument required
+.: usage: . filename [arguments]
+..도 동일
+bash-3.2$ ..
+bash: ..: command not found
 
-type == WORD면
-ft_add_cmd에서 parse->tokens[parse->token_index].str을
-exec_info->cmd[exec_info->cmd_index]에 넣는데
+cat 으로 입력을 받는중에
+asdasd 후에
+Ctrl+C Ctrl+\을 했을때
+minishell$ cat
+asdasdminishell$ asdasd 처럼 이상하게 나옴
 
-// 아직 처리 해야하나 말아야하나 모르겠지만
-qoute_flag둘다도 배열을 하나 만들어서 들고 다녀야하나 모르겠음
-//
+```
+### fix
+```c
+ft_cd_biltin.c
+PWD 세그폴트
+ft_change_pwd(){
+current = info->mini_ev.front_node;
+while (current && ft_strncmp(current->content, "PWD=", 4))
+	current = current->next_node;
+if (current == NULL)
+	return ;
+ // PWD가 없을때 Bash에서도 PWD는 재생성하지 않음
+}
+```
+```c
+. 하나만 넣을때 No chiled Process에러 발생
+bash: .: filename argument required
+.: usage: . filename [arguments]
+..도 동일
+int	ft_cmd_error_sup(t_exec_info *exec_info)
+{
+	if (exec_info->cmd_path[0] == '.'
+		&& exec_info->cmd_path[1] == '.'
+		&& exec_info->cmd_path[2] == '\0')
+	{
+		return (FAILURE);
+	}
+	else if (exec_info->cmd_path[0] == '.'
+		&& exec_info->cmd_path[1] == '\0')
+	{
+		ft_printf_err("minishell: .: filename argument required\n\
+.: usage: . filename [arguments]\n");
+		exit(2);
+	}
+	return (SUCCESS);
+}
+함수 추가로 ft_exec_cmd에서 호출
+에러 메세지 출력
+```
 
-이때 exec_info->env_flag[exec_info->cmd_index]로
-각 커맨드가 환경변수인지를 넣어서
-
-echo, cat쪽에서 env_flag를 확인후 처리하는 방안으로 가야 할것같음.
+```c
+/
+./
+../
+이 들와어왔을때
+if ((cmd_path[0] == '.' && cmd_path[1] == '/') || cmd_path[0] == '/')
+	{
+		ft_cmd_is_directory(cmd_path);
+		ft_cmd_path_error_handle(exec_info, cmd_path);
+		if (access(cmd_path, X_OK) == SUCCESS) // env전체 unset 후 /bin/ls 무한 해결중 여기서 일단 SUCCESS로 나감
+			return (SUCCESS);
+	}
+기존 방식으로 if문의 조건을 if (ft_strchr(cmd_path, '/') != 0)로
+/가 하나라도 있으면 들어가게 변경
 ```

@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/14 14:28:31 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/19 23:25:23 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ void	ft_sigpipe_handler(int signum);
 void	ft_sig_for_here_doc_parent(int sig);
 void	ft_sig_for_here_doc_child(int sig);
 void	ft_sig_for_parent(int sig);
+void	ft_sig_for_child(int sig);
 void	ft_print_logo(void);
 
 /* 1_PARSING */
@@ -188,6 +189,7 @@ int		ft_exec(t_info *info, t_parse *parse, t_exec *exec);
 int		ft_here_doc_loop_check(t_exec *exec);
 int		ft_check_here_doc(t_exec *exec);
 void	ft_cmd_path_error_handle(t_exec_info *exec_info, char *cmd_path);
+int		ft_cmd_error_sup(t_exec_info *exec_info);
 void	ft_cmd_null_handle(t_exec_info *exec_info);
 int		ft_space_handle(t_exec_info *exec_info);
 char	*ft_make_path(t_exec_info *exec_info, char *path);
@@ -197,6 +199,8 @@ int		ft_exec_builtin(t_info *info, t_parse *parse,
 			t_exec *exec, t_exec_info *exec_info);
 void	ft_exec_cmd(t_info *info, t_parse *parse,
 			t_exec *exec, t_exec_info *exec_info);
+int		ft_find_error(char *cmd_path, t_exec *exec,
+			t_exec_info *exec_info);
 void	ft_set_pipe_fd(t_exec *exec, t_exec_info *exec_info);
 void	ft_set_redirect_fd(t_exec_info *exec_info);
 
