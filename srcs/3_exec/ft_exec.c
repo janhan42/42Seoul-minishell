@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:25:46 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/20 19:34:58 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/20 22:17:57 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static int	ft_parent(t_exec *exec, t_exec_info *exec_info)
 {
-	// signal(SIGINT, ft_sig_for_parent);
-	// signal(SIGQUIT, ft_sig_for_parent);
 	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 	if (exec->prev_pipe_fd != NONE)
@@ -37,6 +35,8 @@ static int	ft_parent(t_exec *exec, t_exec_info *exec_info)
 static int	ft_make_child(t_info *info, t_parse *parse,
 	t_exec *exec, t_exec_info *exec_info)
 {
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	exec_info->pid = fork();
 	if (exec_info->pid == FAILURE)
 	{
@@ -77,6 +77,10 @@ static int	ft_wait_child(t_exec *exec)
 		}
 		exec->exec_arr_index++;
 	}
+	if (g_child_exit_code == 130)
+		ft_putstr_fd("\n", STDERR_FILENO);
+	else if (g_child_exit_code == 131)
+		ft_putstr_fd("Quit: 3\n", STDERR_FILENO);
 	unlink("/tmp/whine");
 	return (SUCCESS);
 }
