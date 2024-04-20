@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 01:13:07 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/20 22:50:45 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/21 00:28:56 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_signal_2(int sig)
 void	ft_sig_init(t_info *info)
 {
 	info->termios = info->termios_backup;
-	info->termios.c_lflag = ~ECHOCTL;
+	info->termios.c_lflag &= ~ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSANOW, &info->termios);
 	signal(SIGINT, ft_signal_2);
 	signal(SIGQUIT, SIG_IGN);
