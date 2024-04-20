@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 02:25:00 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/20 13:49:44 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/20 22:53:02 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ int	ft_find_error(char *cmd_path, t_exec *exec, t_exec_info *exec_info)
 {
 	if (cmd_path == NULL)
 		return (SUCCESS);
-
-	if (ft_strchr(cmd_path, '/') != 0) // / ./ ../이 들어왔을때 처리
+	if (ft_strchr(cmd_path, '/') != 0)
 	{
 		ft_cmd_is_directory(cmd_path);
 		ft_cmd_path_error_handle(exec_info, cmd_path);
@@ -72,7 +71,7 @@ int	ft_find_error(char *cmd_path, t_exec *exec, t_exec_info *exec_info)
 	}
 	if ((exec->path_ev[0] == NULL && !ft_is_builtin(exec_info)))
 	{
-		if (access(cmd_path, X_OK) == SUCCESS) // unset PATH 후 현재 디렉토리에 cmd_path가 있으면
+		if (access(cmd_path, X_OK) == SUCCESS)
 			return (SUCCESS);
 		ft_printf_err("minishell: %s: No such file or directory\n",
 			exec_info->cmd[0]);
@@ -81,7 +80,7 @@ int	ft_find_error(char *cmd_path, t_exec *exec, t_exec_info *exec_info)
 	return (FAILURE);
 }
 
-int	ft_cmd_error_sup(t_exec_info *exec_info) // . 또는 ..이들어왔을때
+int	ft_cmd_error_sup(t_exec_info *exec_info)
 {
 	if (exec_info->cmd_path[0] == '.'
 		&& exec_info->cmd_path[1] == '.'

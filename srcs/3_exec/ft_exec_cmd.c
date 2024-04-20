@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/20 22:20:20 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/20 22:25:01 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static char	**ft_make_envp(t_list *mini_envp)
 
 	count = 0;
 	node = mini_envp->front_node;
-	if (node == NULL) // env가 전부 언셋 되어있을떄
+	if (node == NULL)
 		return (NULL);
 	while (node->next_node != NULL)
 	{
@@ -91,9 +91,8 @@ static char	**ft_make_envp(t_list *mini_envp)
 	node = mini_envp->front_node;
 	while (node->next_node != NULL)
 	{
-		envp[count] = (char *)node->content;
+		envp[count++] = (char *)node->content;
 		node = node->next_node;
-		count++;
 	}
 	envp[count] = NULL;
 	return (envp);

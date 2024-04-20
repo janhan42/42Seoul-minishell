@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 01:13:07 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/20 19:13:57 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/20 22:50:45 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,4 @@ void	ft_sig_for_here_doc_child(int sig)
 {
 	(void)sig;
 	exit(1);
-}
-
-void	ft_sig_for_parent(int sig)
-{
-		if (sig == SIGINT)
-		{
-			printf("^C\n");
-		}
-		if (sig == SIGQUIT)
-		{
-			printf("^\\Quit: %d\n", sig);
-		}
 }
