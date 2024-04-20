@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/20 13:51:13 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/20 19:47:20 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,15 @@ static char	**ft_make_envp(t_list *mini_envp)
 void	ft_exec_cmd(t_info *info, t_parse *parse,
 	t_exec *exec, t_exec_info *exec_info)
 {
+	tcgetattr(STDIN_FILENO, &info->termios);
+	info->termios.c_lflag |= ECHOK;
+	info->termios.c_lflag |= ECHOCTL;
+	printf("setting termios return : %d\n",
+	tcsetattr(STDIN_FILENO, TCSANOW, &info->termios));
+
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
+	
 	ft_set_fd(exec, exec_info);
 	if (ft_find_cmd(exec, exec_info, parse) == FAILURE
 		&& ft_is_builtin(exec_info) == FALSE)

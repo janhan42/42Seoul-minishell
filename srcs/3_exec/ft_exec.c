@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 19:25:46 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/20 15:08:23 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/20 19:34:58 by sangshin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 static int	ft_parent(t_exec *exec, t_exec_info *exec_info)
 {
-	signal(SIGINT, ft_sig_for_parent);
-	signal(SIGQUIT, ft_sig_for_parent);
+	// signal(SIGINT, ft_sig_for_parent);
+	// signal(SIGQUIT, ft_sig_for_parent);
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	if (exec->prev_pipe_fd != NONE)
 	{
 		if (close(exec->prev_pipe_fd) == FAILURE)
