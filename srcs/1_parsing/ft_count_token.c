@@ -6,12 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:05:11 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/22 14:49:22 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/17 18:57:22 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <inttypes.h>
 
 static int	ft_pipe_process(t_parse *parse)
 {

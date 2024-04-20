@@ -6,12 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 10:45:56 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/06 08:42:51 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/17 19:01:17 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stddef.h>
 
 static t_node	*ft_find_node(char *to_find2, t_list *list)
 {

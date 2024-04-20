@@ -6,12 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:21:34 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/30 11:09:13 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/17 18:58:20 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <sys/fcntl.h>
 
 static void	ft_redirect_out1(t_exec_info *exec_info, t_redirect *redirect)
 {

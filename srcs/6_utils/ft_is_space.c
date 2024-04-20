@@ -6,9 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:18:19 by janhan            #+#    #+#             */
-/*   Updated: 2024/02/27 23:18:49 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/17 19:05:40 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../includes/minishell.h"
 
 int	ft_is_space(char c)
 {

@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/19 22:27:49 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/20 18:04:36 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 static void	ft_parse_execute(t_info *info, t_parse *parse, t_exec *exec)
 {
+	ft_substitute_env(info, parse);
+	if (parse->line[0] == '\0')
+		return ;
 	if (ft_parse(info, parse) == FAILURE)
 		return ;
 	if (ft_make_exec_info(info, parse, exec) == FAILURE)
@@ -23,17 +26,13 @@ static void	ft_parse_execute(t_info *info, t_parse *parse, t_exec *exec)
 	ft_free_all(parse, exec);
 }
 
-void	check(void)
-{
-	system("leaks minishell");
-}
-
 int	main(int ac, char **av, char **ev)
 {
 	t_info		info;
 	t_parse		parse;
 	t_exec		exec;
 
+	printf("========================4월 20일 작업중===========================\n");
 	ft_init(ac, av, ev, &info);
 	while (TRUE)
 	{

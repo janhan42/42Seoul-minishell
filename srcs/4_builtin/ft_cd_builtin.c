@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/17 09:43:03 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/19 22:34:28 by janhan           ###   ########.fr       */
+/*   Created: 2024/04/15 16:14:17 by sangshin          #+#    #+#             */
+/*   Updated: 2024/04/20 13:55:17 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,22 @@ static void	ft_change_oldpwd(t_info *info)
 	char	*result;
 	t_node	*current;
 
-	oldpwd = ft_strdup("OLDPWD=");
-	if (!oldpwd)
-		exit(ft_error("OLDPWD malloc failed", FAILURE));
 	current = info->mini_ev.front_node;
+	oldpwd = ft_strdup("OLDPWD=");
+	if (oldpwd == NULL)
+		exit(ft_error("OLDPWD malloc failed\n", FAILURE));
 	while (current && ft_strncmp(current->content, "OLDPWD=", 7))
 		current = current->next_node;
 	if (current == NULL)
-	{
-		free(oldpwd);
-		return ;
-	}
+		current = ft_find_oldpwd(info);
 	getcwd(path, sizeof(path));
 	result = ft_strjoin(oldpwd, path);
-	if (!result)
-	{
-		free(oldpwd);
-		exit (ft_error("ft_strjoin faild", FAILURE));
-	}
+	if (result == NULL)
+		exit (ft_error("ft_strjoin faild\n", FAILURE));
 	free(current->content);
 	current->content = ft_strdup(result);
+	if (current->content == NULL)
+		exit(ft_error("ft_change_oldpwd ft_stdup failed\n", FAILURE));
 	free(result);
 	free(oldpwd);
 }
@@ -47,24 +43,24 @@ static void	ft_change_pwd(t_info *info)
 {
 	char	path[PATH_MAX];
 	char	*pwd;
-	char	*result = NULL;
+	char	*result;
 	t_node	*current;
 
 	current = info->mini_ev.front_node;
 	while (current && ft_strncmp(current->content, "PWD=", 4))
 		current = current->next_node;
-	if (current == NULL) // PWD가 없을때 Bash에서도 PWD는 재생성하지 않음
+	if (current == NULL)
 		return ;
 	pwd = ft_strdup("PWD=");
 	if (!pwd)
 		exit(ft_error("PWD malloc failed", FAILURE));
 	getcwd(path, sizeof(path));
 	result = ft_strjoin(pwd, path);
-	if (!result)
+	if (result == NULL)
 		exit(ft_error("ft_strjoin failed", FAILURE));
 	free(current->content);
 	current->content = ft_strdup(result);
-	if (!current->content)
+	if (current->content == NULL)
 		exit(ft_error("ft_strdup failed", FAILURE));
 	free(pwd);
 	free(result);

@@ -6,12 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 00:27:30 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/21 20:34:50 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/17 19:04:59 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <inttypes.h>
 
 int	ft_is_env(t_info *info, t_parse *parse)
 {

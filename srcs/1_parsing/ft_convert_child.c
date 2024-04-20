@@ -6,18 +6,12 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 00:21:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/03/19 15:22:47 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/17 18:57:01 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/**
- * @brief
- * 가장 최근의 자식프로세스의 종료코드를 현재 토큰에 저장
- * @param parse
- * @return int
- */
 int	ft_convert_child_exit_code(t_parse *parse)
 {
 	parse->exit_code = ft_itoa(g_child_exit_code);

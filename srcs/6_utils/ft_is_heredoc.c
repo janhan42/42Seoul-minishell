@@ -6,9 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 00:01:39 by janhan            #+#    #+#             */
-/*   Updated: 2024/02/28 00:02:01 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/17 19:05:27 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../includes/minishell.h"
 
 int	ft_is_heredoc(char c1, char c2)
 {

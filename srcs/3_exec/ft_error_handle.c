@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 02:25:00 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/19 23:40:46 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/20 13:49:44 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	ft_cmd_path_error_handle(t_exec_info *exec_info, char *cmd_path)
 void	ft_cmd_null_handle(t_exec_info *exec_info)
 {
 	if (exec_info->use_pipe == 1)
-		if (exec_info->cmd[exec_info->cmd_index - 1] != NULL
+		if (exec_info->cmd_index > 1
+			&& exec_info->cmd[exec_info->cmd_index - 1] != NULL
 			&& exec_info->cmd[exec_info->cmd_index - 1][0] == '\0')
 			exec_info->cmd[exec_info->cmd_index - 1] = NULL;
 	if (exec_info->cmd[exec_info->cmd_index] != NULL

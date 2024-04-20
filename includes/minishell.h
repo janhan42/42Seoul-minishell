@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 00:07:42 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/19 23:25:23 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/20 13:50:10 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ typedef struct s_token
 	char			*original;
 	char			*str;
 	int				env_flag;
-	int				sqoute_flag;
-	int				dqoute_flag;
 }	t_token;
 
 /* INFO STRUCT */
@@ -140,9 +138,6 @@ typedef struct s_exec_info
 	int				infile_fd;
 	int				outfile_fd;
 	int				builtin_parent;
-	int				*env_flags;
-	int				*dqoute_flags;
-	int				*sqoute_flags;
 }	t_exec_info;
 
 typedef struct s_exec
@@ -165,7 +160,6 @@ void	ft_sigpipe_handler(int signum);
 void	ft_sig_for_here_doc_parent(int sig);
 void	ft_sig_for_here_doc_child(int sig);
 void	ft_sig_for_parent(int sig);
-void	ft_sig_for_child(int sig);
 void	ft_print_logo(void);
 
 /* 1_PARSING */
@@ -181,15 +175,12 @@ void	ft_remove_quote(t_parse *parse);
 /* 2_exec_init */
 int		ft_set_exec_info(t_parse *parse, t_exec_info *exec_info);
 int		ft_make_exec_info(t_info *info, t_parse *parse, t_exec *exec);
-int		*ft_dup_dqoute_flag(t_parse *parse);
-int		*ft_dup_sqoute_flag(t_parse *parse);
 
 /* 3_exec */
 int		ft_exec(t_info *info, t_parse *parse, t_exec *exec);
 int		ft_here_doc_loop_check(t_exec *exec);
 int		ft_check_here_doc(t_exec *exec);
 void	ft_cmd_path_error_handle(t_exec_info *exec_info, char *cmd_path);
-int		ft_cmd_error_sup(t_exec_info *exec_info);
 void	ft_cmd_null_handle(t_exec_info *exec_info);
 int		ft_space_handle(t_exec_info *exec_info);
 char	*ft_make_path(t_exec_info *exec_info, char *path);
@@ -199,15 +190,13 @@ int		ft_exec_builtin(t_info *info, t_parse *parse,
 			t_exec *exec, t_exec_info *exec_info);
 void	ft_exec_cmd(t_info *info, t_parse *parse,
 			t_exec *exec, t_exec_info *exec_info);
-int		ft_find_error(char *cmd_path, t_exec *exec,
-			t_exec_info *exec_info);
 void	ft_set_pipe_fd(t_exec *exec, t_exec_info *exec_info);
 void	ft_set_redirect_fd(t_exec_info *exec_info);
 
 /* 4_builtin */
 int		ft_cd_builtin(t_info *info, t_exec_info *exec_info, t_parse *parse);
+t_node	*ft_find_oldpwd(t_info *info);
 int		ft_echo_builtin(t_exec_info *exec_info);
-char	*ft_remove_space(char *string);
 int		ft_env_builtin(t_info *info);
 int		ft_unset_builtin(t_info *info, t_exec_info *exec_info);
 int		ft_exit_builtin(t_list *mini_ev, t_parse *parse,
@@ -225,6 +214,9 @@ void	*list_content_finder(t_node *head, void *content);
 /* 6_UTILS */
 void	ft_cmd_is_directory(char *cmd_path);
 int		ft_error(char *msg, int error_code);
+int		ft_find_error(char *cmd_path, t_exec *exec,
+			t_exec_info *exec_info);
+int		ft_cmd_error_sup(t_exec_info *exec_info);
 void	ft_free_tokens(t_parse *parse, size_t token_size);
 int		ft_is_child_exit_code(t_parse *parse);
 int		ft_is_quote(char c);
@@ -238,4 +230,12 @@ int		ft_is_builtin(t_exec_info *exec_info);
 int		ft_perror(int error_code);
 void	ft_free_exec(t_exec *exec, size_t exec_arr_i);
 void	ft_free_all(t_parse *parse, t_exec *exec);
+
+/* 7_SUBSTITUTE ENV */
+int		ft_substitute_env(t_info *info, t_parse *parse);
+int		ft_is_in_single_quote(char *line, int i);
+char	*ft_get_env_name(char *line);
+char	*ft_get_env_value(t_info *info, char *env_name);
+int		ft_is_special_dallor(char *line);
+int		ft_count_dallor(char *line);
 #endif

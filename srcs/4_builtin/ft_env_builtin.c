@@ -6,12 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 08:27:28 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/06 08:43:32 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/17 18:59:09 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stddef.h>
 
 int	ft_env_builtin_has_value(char *content)
 {

@@ -6,7 +6,7 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:01:16 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/19 23:39:39 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/20 13:51:13 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	ft_find_cmd(t_exec *exec, t_exec_info *exec_info, t_parse *parse)
 		return (FAILURE);
 	if (parse->dquote_flag == TRUE && cmd_path[0] == 0)
 		return (FAILURE);
-	if(ft_find_error(cmd_path, exec, exec_info) == SUCCESS)
+	if (ft_find_error(cmd_path, exec, exec_info) == SUCCESS)
 		return (SUCCESS);
 	if (ft_access_path(exec, exec_info) == SUCCESS)
 		return (SUCCESS);
@@ -77,7 +77,7 @@ static char	**ft_make_envp(t_list *mini_envp)
 
 	count = 0;
 	node = mini_envp->front_node;
-	if (node == NULL) // mini_envp가 없을때.
+	if (node == NULL) // env가 전부 언셋 되어있을떄
 		return (NULL);
 	while (node->next_node != NULL)
 	{
@@ -105,13 +105,11 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
 	ft_set_fd(exec, exec_info);
-	if (ft_strchr(exec_info->cmd[0], ' ') != 0)
-		if (ft_space_handle(exec_info) == FAILURE)
-			exit(1);
 	if (ft_find_cmd(exec, exec_info, parse) == FAILURE
 		&& ft_is_builtin(exec_info) == FALSE)
 	{
 		ft_printf_err("minishell: %s: command not found\n", exec_info->cmd[0]);
+		ft_free_all(parse, exec);
 		exit(127);
 	}
 	else
@@ -122,9 +120,7 @@ void	ft_exec_cmd(t_info *info, t_parse *parse,
 		if (ft_is_builtin(exec_info) == TRUE)
 			ft_exec_builtin(info, parse, exec, exec_info);
 		else
-		{
 			execve(exec_info->cmd_path, exec_info->cmd,
 				ft_make_envp(&info->mini_ev));
-		}
 	}
 }

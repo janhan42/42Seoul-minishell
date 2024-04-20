@@ -6,9 +6,11 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 23:16:27 by janhan            #+#    #+#             */
-/*   Updated: 2024/02/27 23:16:47 by janhan           ###   ########.fr       */
+/*   Updated: 2024/04/17 19:05:35 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../includes/minishell.h"
 
 int	ft_is_quote(char c)
 {

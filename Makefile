@@ -6,19 +6,19 @@
 #    By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 13:41:14 by janhan            #+#    #+#              #
-#    Updated: 2024/04/19 22:30:42 by janhan           ###   ########.fr        #
+#    Updated: 2024/04/20 15:09:44 by janhan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME					=	minishell
 
 CC						=	cc
-CFLAGS					=	-Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS					=	-Wall -Wextra -Werror #-fsanitize=address
 RM						=	rm -f
 
-#READLINE_LINK			=	-l readline
+READLINE_LINK			=	-l readline
 #	FOR M1 MAC
-READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
+#READLINE_LINK			=	-l readline -L/opt/homebrew/opt/readline/lib
 
 INCLUDES				=	includes/
 
@@ -32,7 +32,6 @@ SRCS					=	srcs/main.c										\
 							srcs/0_init_utils/ft_init.c						\
 							srcs/0_init_utils/ft_mini_ev_init.c				\
 							srcs/0_init_utils/ft_sig_init.c					\
-							srcs/0_init_utils/ft_sig_init_2.c				\
 							srcs/1_parsing/ft_convert_child.c				\
 							srcs/1_parsing/ft_convert_env.c					\
 							srcs/1_parsing/ft_count_token.c					\
@@ -43,7 +42,6 @@ SRCS					=	srcs/main.c										\
 							srcs/1_parsing/ft_tokenization.c				\
 							srcs/2_exec_init/ft_exec_init.c					\
 							srcs/2_exec_init/ft_set_exec_info.c				\
-							srcs/2_exec_init/ft_flag_dup.c					\
 							srcs/3_exec/ft_check_here_doc.c					\
 							srcs/3_exec/ft_error_handle.c					\
 							srcs/3_exec/ft_exec_builtin_parent.c			\
@@ -55,8 +53,8 @@ SRCS					=	srcs/main.c										\
 							srcs/3_exec/ft_set_redirect_fd.c				\
 							srcs/3_exec/ft_space_handle.c					\
 							srcs/4_builtin/ft_cd_builtin.c					\
+							srcs/4_builtin/ft_cd_builtin_sup.c				\
 							srcs/4_builtin/ft_echo_builtin.c				\
-							srcs/4_builtin/ft_echo_builtin_sup.c			\
 							srcs/4_builtin/ft_env_builtin.c					\
 							srcs/4_builtin/ft_export_builtin.c				\
 							srcs/4_builtin/ft_exit_builtin.c				\
@@ -83,6 +81,9 @@ SRCS					=	srcs/main.c										\
 							srcs/6_utils/ft_is_space.c						\
 							srcs/6_utils/ft_perror.c						\
 							srcs/6_utils/ft_print_logo.c					\
+							srcs/7_subs_env//ft_count_dallor.c				\
+							srcs/7_subs_env/ft_get_env.c					\
+							srcs/7_subs_env/ft_substitute_env.c				\
 							srcs/gnl/get_next_line_utils.c					\
 							srcs/gnl/get_next_line.c
 

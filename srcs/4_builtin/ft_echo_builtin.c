@@ -6,22 +6,18 @@
 /*   By: janhan <janhan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 09:48:52 by janhan            #+#    #+#             */
-/*   Updated: 2024/04/15 15:11:07 by sangshin         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:52:25 by janhan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stddef.h>
 
-static char	**ft_echo_builtin_malloc_str(t_exec_info *exec_info, size_t *str_i,
-int *n_flag)
+static char	**ft_echo_builtin_malloc_str(t_exec_info *exec_info)
 {
 	char	**str;
 	size_t	str_size;
 
 	str_size = 1;
-	*str_i = 0;
-	*n_flag = FALSE;
 	while (exec_info->cmd[str_size])
 		str_size++;
 	str = (char **)ft_calloc(str_size, sizeof(char *));
@@ -88,15 +84,13 @@ int	ft_echo_builtin(t_exec_info *exec_info)
 		printf("\n");
 		exit(SUCCESS);
 	}
-	str = ft_echo_builtin_malloc_str(exec_info, &str_i, &n_flag);
+	str = ft_echo_builtin_malloc_str(exec_info);
+	n_flag = FALSE;
+	str_i = 0;
 	cmd_i = ft_echo_builtin_find_cmd_i(exec_info->cmd, &n_flag);
 	while (exec_info->cmd[cmd_i])
 	{
-		if (exec_info->dqoute_flags[cmd_i] == 0
-			&& exec_info->env_flags[cmd_i] == TRUE)
-			str[str_i] = ft_remove_space(exec_info->cmd[cmd_i]);
-		else
-			str[str_i] = exec_info->cmd[cmd_i];
+		str[str_i] = exec_info->cmd[cmd_i];
 		str_i++;
 		cmd_i++;
 	}
